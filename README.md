@@ -10,7 +10,7 @@
 <img src="./images/gist.png" alt="Homework Logo" width="100" height="100">
 </a>
 
-<h3 align="r">Rossetti's Computer Science for Javscript Regex Tutorial</h3>
+<h3 align="r">Rossetti's Computer Science for Javascript Regex Tutorial</h3>
 <p align="center">
     Click below to start learning about matching an email!
 <br />
@@ -135,7 +135,7 @@ Research help from external sources:
 
 - Utilized office hours for initial understanding on regular expressions.
 - Utilized https://regexr.com/ to test functionalities.
-- Utilzied MDN Web Docs for basic functionaility of matching an email (a-z,0-9, ^, $, etc.).
+- Utilized MDN Web Docs for basic functionality of matching an email (a-z,0-9, ^, $, etc.).
 - Utilized StackOverflow for boundaries, look-ahead and look-behind functionality.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>

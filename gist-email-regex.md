@@ -40,15 +40,15 @@ In this Gist, we will be covering the Javascript regular expression used for mat
 
 "***/^***([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})***$/***"
 
-Anchors in a regular expression, such as `^` and `$`, are use to identify the specific position of the string being searched. Using the regular expression referenced above as an example (matching an eamil), we utilize the caret `^` character as an anchor to match the beginning of a string and the dollar sign `$` character as an anchor to match the end of a string.
+Anchors in a regular expression, such as `^` and `$`, are use to identify the specific position of the string being searched. Using the regular expression referenced above as an example (matching an email), we utilize the caret `^` character as an anchor to match the beginning of a string and the dollar sign `$` character as an anchor to match the end of a string.
 
-These anchors are important for multiple reasons. Probably the most important reason is to clearly define the beginning and end of a string being searched, so you do not include extra spaces, or characters, before and after the string. It also eliminates any confusion as to which part of the string should be selected when the search critieria is met for similar instances within the same string.
+These anchors are important for multiple reasons. Probably the most important reason is to clearly define the beginning and end of a string being searched, so you do not include extra spaces, or characters, before and after the string. It also eliminates any confusion as to which part of the string should be selected when the search criteria is met for similar instances within the same string.
 
 Note: It is also important to call out that a regular expression is enclosed with delimiters, such as a forward slash `/` at the beginning and end of the regex, but otherwise does not alter the search's functionality.
 
 #### Example
 
-Since it is tricky to show exactly how anchors work on an email, let's use the regular expression `/cat/` globally on the string `cats like to catch birds and play with other cats`. In this example, the regex will find "***cat***s like to ***cat***ch birds and play with other ***cat***s". As you can see, without anchors the search with return all instances of the letter combintation `cat` within the string regardless of positioning. However, a search of `/cats$/` will take the ending position into account and return "cats like to catch birds and play with other ***cats***" while `/^cats/` will take the beginning position into account and return "***cats*** like to catch birds and play with other cats". Although this is a very unique example, and does not relate to matching an email, you can see how the anchors play a key role in finding specific patterns in specific locations.
+Since it is tricky to show exactly how anchors work on an email, let's use the regular expression `/cat/` globally on the string `cats like to catch birds and play with other cats`. In this example, the regex will find "***cat***s like to ***cat***ch birds and play with other ***cat***s". As you can see, without anchors the search with return all instances of the letter combination `cat` within the string regardless of positioning. However, a search of `/cats$/` will take the ending position into account and return "cats like to catch birds and play with other ***cats***" while `/^cats/` will take the beginning position into account and return "***cats*** like to catch birds and play with other cats". Although this is a very unique example, and does not relate to matching an email, you can see how the anchors play a key role in finding specific patterns in specific locations.
 
 When matching or validating an email, this will ensure there are no extra spaces or non-defined characters before or after the email.
 
@@ -56,7 +56,7 @@ When matching or validating an email, this will ensure there are no extra spaces
 
 "/^([a-z0-9_\.-]***+***)@([\da-z\.-]***+***)\.([a-z\.]***{2,6}***)$/"
 
-Quantifiers in a regular expression, such as `+` and `{...}`, are use to quantify the number of preceding characters in the character set that should be matched in the search. In the email match regex, we utilize the plus sign `+` character as a quantifer to ensure there is at least one specified character in the preceding character set as well as the brackets `{2,6}` to ensure there are between 2 and 6 (inclusive) characters in the preceding character set.
+Quantifiers in a regular expression, such as `+` and `{...}`, are use to quantify the number of preceding characters in the character set that should be matched in the search. In the email match regex, we utilize the plus sign `+` character as a quantifier to ensure there is at least one specified character in the preceding character set as well as the brackets `{2,6}` to ensure there are between 2 and 6 (inclusive) characters in the preceding character set.
 
 These quantifiers are important to ensure certain parts of the string are not left blank, or do not include the necessary number of characters.
 
@@ -87,7 +87,7 @@ Let's use the regular expression `/^([a-z0-9_\.-]+)@([\da-z]+)\.com$/` on the em
 
 ### Flags
 
-Flags, also known as modifiers or options, in a regular expression are additional parameters that can be used in the matching process and typically appear outside of the delimitors `/.../`.
+Flags, also known as modifiers or options, in a regular expression are additional parameters that can be used in the matching process and typically appear outside of the delimiters `/.../`.
 
 #### Example
 
@@ -100,7 +100,7 @@ Since there are no flags in the email matching regex, we won't get into too much
 
 "/^***(***[a-z0-9_\.-]+***)***@***(***[\da-z\.-]+***)***\.***(***[a-z\.]{2,6}***)***$/"
 
-Grouping and capturing, or also known as a capturing group, in a regular expression, noted as `(...)`, are use to match one or more occurances of the contents within (typically bracket expressions). In the email match regex, we utilize three capturing groups `(...)@(...).(...)`.
+Grouping and capturing, or also known as a capturing group, in a regular expression, noted as `(...)`, are use to match one or more occurrences of the contents within (typically bracket expressions). In the email match regex, we utilize three capturing groups `(...)@(...).(...)`.
 
 Note: The parentheses `()` do not affect the functionality of the regex; however, they do group specific patterns together as a single unit to allow for certain groups to be referenced as needed.
 
@@ -124,7 +124,7 @@ If we were to remove the brackets from the previous example and use the regular 
 
 ### Greedy and Lazy Match
 
-Greedy and Lazy Match in a regular expression are a form of quantifiers that with specificy how many times a character, or character class, will match and is typically noted by a `.+` or `.*` for greedy and `.+?` or `.*?` for lazy.
+Greedy and Lazy Match in a regular expression are a form of quantifiers that will specify how many times a character, or character class, will match and is typically noted by a `.+` or `.*` for greedy and `.+?` or `.*?` for lazy.
 
 #### Example
 
@@ -132,7 +132,7 @@ Since there are no greedy or lazy matches in the email matching regex, we won't 
 
 ### Boundaries
 
-Boundaries in a regular expression, such as `^` or `\b`, represent the position of a character, or characeter set, in a string. Similar to anchors, boundaries are important to define where a specific match should occur.
+Boundaries in a regular expression, such as `^` or `\b`, represent the position of a character, or character set, in a string. Similar to anchors, boundaries are important to define where a specific match should occur.
 
 #### Example
 
@@ -157,4 +157,4 @@ There are no positive/negative look-ahead/behind features in the email matching 
 
 ## Author
 
-This Gist was written and published by Stephen Rossetti, an aspiring coder and full-stack devleoper attending the UMN Coding Bootcamp. A link to my GitHub profile can be found [here](https://github.com/stephenrossetti). Please reach out with any questions, comments, or concerns!
+This Gist was written and published by Stephen Rossetti, an aspiring coder and full-stack developer attending the UMN Coding Bootcamp. A link to my GitHub profile can be found [here](https://github.com/stephenrossetti). Please reach out with any questions, comments, or concerns!
