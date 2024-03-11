@@ -80,7 +80,7 @@ THEN I find a section about the author and a link to the author’s GitHub profi
 
 ## Built With & Technology Used
 
-- ![Gist](https://img.shields.io/github/gist/stars/:gistId)
+- Gist
 
 ## Getting Started
 
