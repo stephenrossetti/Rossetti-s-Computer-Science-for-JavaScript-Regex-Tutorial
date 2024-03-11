@@ -1,4 +1,4 @@
-# Regular Expressions (RegEx)
+# Regular Expressions (RegEx) for Email Matching
 
 A regular expression, also known as a rational expression, or regex, is a sequence of characters that can be included in code, or search algorithms, to match certain patterns of characters within your code, or text. This string-searching algorithm is typically used to find and replace specific character strings but can also be used to validate unique inputs. We will get more into the details about both of these usages in the next paragraph but first let's take a look at a sample regex.
 
@@ -30,7 +30,6 @@ In this Gist, we will be covering the Javascript regular expression used for mat
 - [Bracket Expressions](#bracket-expressions)
 - [Greedy and Lazy Match](#greedy-and-lazy-match)
 - [Boundaries](#boundaries)
-- [Back-references](#back-references)
 - [Look-ahead and Look-behind](#look-ahead-and-look-behind)
 - [Author](#author)
 
@@ -58,7 +57,7 @@ When matching or validating an email, this will ensure there are no extra spaces
 
 Quantifiers in a regular expression, such as `+` and `{...}`, are use to quantify the number of preceding characters in the character set that should be matched in the search. In the email match regex, we utilize the plus sign `+` character as a quantifier to ensure there is at least one specified character in the preceding character set as well as the brackets `{2,6}` to ensure there are between 2 and 6 (inclusive) characters in the preceding character set.
 
-These quantifiers are important to ensure certain parts of the string are not left blank, or do not include the necessary number of characters.
+These quantifiers are important to ensure certain parts of the string are not left blank, or include the necessary number of characters.
 
 #### Example
 
@@ -74,7 +73,7 @@ Character classes in a regular expression, such as `a-z` and `\d`, are use to id
 - `a-z` Match any ***lowercase*** letter from a-z.
 - `0-9` Match any number from 0-9.
 - `_` Match an underscore.
-- `\.` Match a period. Note that a "\" is used to escape the "." since "." has it's own function in regex.
+- `\.` Match a period. Note that a backslash is used to escape the "." since "." has it's own function in regex.
 - `_` Match a hyphen.
 - `@` Match an "@" character.
 - `\d` Match any digit.
@@ -100,7 +99,7 @@ Since there are no flags in the email matching regex, we won't get into too much
 
 "/^***(***[a-z0-9_\.-]+***)***@***(***[\da-z\.-]+***)***\.***(***[a-z\.]{2,6}***)***$/"
 
-Grouping and capturing, or also known as a capturing group, in a regular expression, noted as `(...)`, are use to match one or more occurrences of the contents within (typically bracket expressions). In the email match regex, we utilize three capturing groups `(...)@(...).(...)`.
+Grouping and capturing, or also known as a capturing group in a regular expression, and noted as `(...)`, are use to match one or more occurrences of the contents within (typically bracket expressions). In the email match regex, we utilize three capturing groups `(...)@(...).(...)`.
 
 Note: The parentheses `()` do not affect the functionality of the regex; however, they do group specific patterns together as a single unit to allow for certain groups to be referenced as needed.
 
@@ -114,41 +113,39 @@ In Javascript, if we wrote `const email = 'helloworld@gmail.com'` followed by `c
 
 "/^(***[a-z0-9_\.-]***+)@(***[\da-z\.-]***+)\.(***[a-z\.]***{2,6})$/"
 
-Bracket Expressions in a regular expression, noted as `[...]`, are use to contain a character, or character class, that should be matched in the search. In the email match regex, we utilize three bracket expressions including `[a-z0-9_\.-]`,`[\da-z\.-]`, and `[a-z\.]`.
+Bracket Expressions in a regular expression, noted as `[...]`, are use to contain a character, or character set, that should be matched in the search. In the email match regex, we utilize three bracket expressions including `[a-z0-9_\.-]`,`[\da-z\.-]`, and `[a-z\.]`.
 
 These bracket expressions are important to ensure certain character sets are grouped properly.
 
 #### Example
 
-If we were to remove the brackets from the previous example and use the regular expression `/^(a-z0-9_\.-+)@(\da-z+)\.com$/` on the email strings `hello-world42@gmail.com`, we would return nothing since we are not matching a character set.
+If we were to remove the brackets from the previous example and use the regular expression `/^(a-z0-9_\.-+)@(\da-z+)\.com$/` on the email string `hello-world42@gmail.com` we would return nothing since we are not matching a character set.
 
 ### Greedy and Lazy Match
 
-Greedy and Lazy Match in a regular expression are a form of quantifiers that will specify how many times a character, or character class, will match and is typically noted by a `.+` or `.*` for greedy and `.+?` or `.*?` for lazy.
+Greedy and lazy matches in a regular expression are a form of quantifiers that will specify how many times a character, or character set, will match and is typically noted by a `.+` or `.*` for greedy and `.+?` or `.*?` for lazy.
 
 #### Example
 
-Since there are no greedy or lazy matches in the email matching regex, we won't get into too much detail. Let's use the regular expression `<.+>` and `<.+?>` on the string `<a>hello world</a>`. The greedy match will include the whole string `<a>hello world</a>` while the lazy match will only include the `<a>` and `</a>`.
+Since there are no greedy or lazy matches in the email matching regex, we won't get into too much detail. Let's use the regular expression `<.+>` and `<.+?>` on the string `<a>hello world</a>`. The greedy match will include the whole string `<a>hello world</a>` while the lazy match will only include the `<a>` and `</a>` (i.e., limits the search to each individual set of <>).
 
 ### Boundaries
 
-Boundaries in a regular expression, such as `^` or `\b`, represent the position of a character, or character set, in a string. Similar to anchors, boundaries are important to define where a specific match should occur.
+Boundaries in a regular expression such as `^` or `\b` represent the position of a character, or character set, in a string. Similar to anchors, boundaries are important to define where a specific match should occur.
 
 #### Example
 
 Since we have reviewed anchors previously and no other boundaries occur in the email matching regex, we won't get into too much detail. Here are a few examples:
-- `\b` Matches the position between a character(s) and non-character (e.g., `\bcat\b` will only match the exact word "cat" and not if cat is part of a large word)
+- `\b` Matches the position between a character(s) and non-character (e.g., `\bcat\b` will only match the exact word "cat" and will not match "cat" if it part of a large word like "catfish").
 - `^` and `$` Match the beginning and end of the string, respectively.
-
-### Back-references
 
 ### Look-ahead and Look-behind
 
-Look-ahead and Look-behind are features in a regular expression that matches specific patterns that are followed by other specific patterns without including the other pattern. There are four main expressions including positive `?=` and negative `?!` look-ahead and positive `?<=` and negative `?<!` look-behind.
+Look-ahead and look-behind are features in a regular expression that match specific patterns that are followed by other specific patterns without including the other pattern. There are four main expressions including positive `?=` and negative `?!` look-ahead and positive `?<=` and negative `?<!` look-behind.
 
 #### Example
 
-There are no positive/negative look-ahead/behind features in the email matching regex, but the concept is very intriguing, so there are a few examples below. Feel free to skip this section if needed.
+There are no positive/negative look-ahead/behind features in the email matching regex, but the concept is very intriguing, so there are a few examples below. Feel free to skip this section.
 
 - `Positive Look-Ahead` Matches a specific pattern only if another specific pattern follows it, but only includes the original pattern. For example, the regex `/apple(?= pie)/` would return ***apple*** if the string was `apple pie` and would return nothing if the string was `apple slices`. 
 - `Negative Look-Ahead` Doesn't match a specific pattern if another specific pattern follows it. For example, the regex `/apple(?! pie)/` would return nothing if the string was `apple pie` and would return ***apple*** if the string was `apple slices`.
